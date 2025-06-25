@@ -16,7 +16,7 @@ const Home = () => {
     useEffect(() => {
         const fetchPopular = async () => {
             try {
-                const { data } = await API.get('/movies/popular');
+                const { data } = await API.get('/movies/popular');  
                 setMovies(data || []);
             } catch (error) {
                 toast.error(error.response?.data?.message || 'Failed to load popular movies');
@@ -35,7 +35,7 @@ const Home = () => {
 
         setSearching(true);
 
-        const searchPromise = API.get('/movies/search', { params: { query, year } });
+        const searchPromise = API.get('/movies/search', { params: { title: query, year } });
 
         toast.promise(searchPromise, {
             loading: 'Searching movies...',
